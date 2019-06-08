@@ -3,15 +3,21 @@ from flask import Flask, session
 from flask_session import Session
 # 导入配置对象
 from config import Config
+#使用管理器
+from flask_script import Manager
+# 导入flask_sqlalchemy扩展，实现数据库的链接
+from flask_sqlalchemy import SQLAlchemy
 
-app = Flask(__name__)
-app.config.from_object(Config)
+from HongMo import create_app
 
-Session(app)
+app = create_app('production')
+
+manage = Manager(app)
+
 @app.route('/')
 def index():
     session['hongmo'] = '2018'
     return "HongMo"
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    manage.run()
