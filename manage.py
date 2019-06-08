@@ -10,7 +10,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 from HongMo import create_app
 
-app = create_app('production')
+app = create_app('development')
 
 manage = Manager(app)
 
